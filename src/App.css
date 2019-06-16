@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+ /* Custom Styles */
+
+ .landing{
+   background-color: green;
+   width: 100%;
+   height: 700px;
+   margin-top: -2%;
+ }
+ .landingEmailPage{
+  background-color: green;
+  width: 100%;
+  height: 660px;
+ }
+ .headingTop{
+   padding-top: 2%;
+ }
+ .landingContainer{
+   margin-top: 5%;
+   /* background-color: green; */
+ }
+ .landingEmailContainer{
+  padding-top: 5%;
+  /* background-color: green; */
+}
+ .promoImg{
+   width: 550px;
+   margin-left: 15%;
+   float: left;
+ }
+ .promoEmailImg{
+  width: 550px;
+  margin-left: 15%;
+  /* margin-top: 5%; */
+  float: left;
+}
+ .clear{
+   clear: both;
+ }
+ .landingForm{
+   float: left;
+   margin-left: 5%;
+   border: 1px solid #ccc;
+   /* padding-bottom: 5%; */
+   padding: 5%
+ }
+ .emailForm{
+  border-radius: 5px; 
+  border: none;
+  margin-bottom: 10px;
+  /* height: 25px; */
+  width: 250px;
+  margin-top: 10%;
+  margin-left: 10%;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #ccc;
+  float: left;
+ }
+ .floatLeft{
+   float: left;
+   text-align: center;
+   padding-left: 15%;
+ }
+ .formInput{
+   border-radius: 5px; 
+   border: none;
+   margin-bottom: 10px;
+   height: 25px;
+   width: 250px;
+   margin-top: 10%;
+   background-color: transparent;
+   color: white;
+   border: 1px solid #ccc;
+ }
+ /* .EmailText{
+   color: white;
+   margin-top: 5%;
+ } */
+ .promoInput{   
+  /* margin-top: 5%; */
+ }
+ .downloadPromoImg{
+  padding-left: 15%;
+  width: 400px;
+  margin-left: 20%;
+  float: left;
+  margin-bottom: -5%;
+ }
+ .btnSubmit{
+   background: white;
+   color: black;
+   border: 1px solid #ccc;
+   border-radius: 10%;
+   float: right;
+   height: 35px;
+   width: 70px;
+ }
+ .react-phone-number-input__input{
+   background: transparent;
+   color: white;
+ }
+ ::placeholder{
+   color: white;
+ }
