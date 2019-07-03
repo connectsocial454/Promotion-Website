@@ -5,16 +5,27 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { withRouter } from 'react-router';
 
-class Landing extends Component {
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+class ExtraInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name : '',
-      email: '',
-      phoneNo: ''
+      zipCode : '',
+      dob: '',
+      gender: '',
+      dob: ''
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.handleStartDate = this.handleStartDate.bind(this);
+  }
+
+  handleStartDate(date) {
+    this.setState({
+      dob: date
+    })
   }
 
   onChange(e){
@@ -23,12 +34,15 @@ class Landing extends Component {
 
   onSubmit(e){
     e.preventDefault();
-    // const companyName = this.props.match.params.companyName;
-    const companyId = this.props.match.params.companyId;
+    // const companyId = this.props.match.params.companyId;
     const promotionId = this.props.match.params.promotionId;
-    Axios.post(`/api/user/?name=${this.state.name}&phoneNo=${this.state.phoneNo}&email=${this.state.email}&companyId=${companyId}&promotionId=${promotionId}`)
-    .then(alert("Promo Code Sent!"));
-    this.props.history.push(`/confirmPromo/${companyId}/${promotionId}/${this.state.email}/${this.state.phoneNo}`);
+    const email = this.props.match.params.email;
+
+    const age = Math.floor((new Date() - new Date(this.state.dob).getTime()) / 3.15576e+10);
+
+    Axios.post(`http://3.121.98.124:5000/api/user/extraInfo?zipCode=${this.state.zipCode}&dob=${this.state.dob}&gender=${this.state.gender}&promotionId=${promotionId}&age=${age}`)
+    .then(alert("Thank You for the details!"));
+    this.props.history.push(`/promo/${promotionId}/email/${email}`);
   }
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
@@ -40,7 +54,8 @@ class Landing extends Component {
   }
   render() {
     const data = this.state.title;
-    console.log(this.state.phoneNo);
+    console.log(this.state.dob)
+    console.log(data);
     return (
       <div className = "landing">
         <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
@@ -50,17 +65,23 @@ class Landing extends Component {
                 <form className="landingForm promoInput" onSubmit= {this.onSubmit}>
                     <font color="white"><p>SUBSCRIBE & GET YOUR PROMO</p></font>
                     <font color="#ccc"><p>Don't miss this great opportunity. Get it Now!</p></font>
-                    <input type="text" name="name" className= "formInput" placeholder="Name" value= {this.state.name} onChange= {this.onChange} />
+                    <input type="text" name="zipCode" className= "formInput" placeholder="Zip Code" value= {this.state.name} onChange= {this.onChange} />
                     <div className="clear"></div>
 
-                    <input type="email" name="email" className= "formInput" placeholder="Email" value= {this.state.email} onChange= {this.onChange} />
+                    <DatePicker
+                            openToDate={new Date()}
+                            className = "formInput"
+                            selected={this.state.dob}
+                            dateFormat="yyyy-MM-dd"
+                            onChange={this.handleStartDate}
+                            placeholderText = "Date of Birth"
+                    />
                     <div className="clear"></div>
-                    <br />
-                    <PhoneInput
-                    className= "phoneNumber"
-                    placeholder="Enter phone number"
-                    value={ this.state.phoneNo }
-                    onChange={ phoneNo => this.setState({ phoneNo }) } />
+                    
+                    <select className="formInput" name="gender" onChange = {this.onChange}>
+                        <option value = "Male">Male</option>
+                        <option value = "Female">Female</option>
+                    </select>
                     <div className="clear"></div>
                     <br />
                     <button className="btnSubmit">Submit</button>
@@ -71,4 +92,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default ExtraInfo;

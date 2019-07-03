@@ -21,22 +21,43 @@ import {
 } from 'react-share';
 
 class PromoEmail extends Component {
-
-    componentDidMount(){
-        const email = this.props.match.params.email;
-        const promotionId = this.props.match.params.promotionId;
-        Axios.get(`/api/user/promoEmail?promotionId=${promotionId}&toEmail=${email}&fromEmail=`);
+  constructor(props){
+    super(props);
+    this.state = {
     }
+    // this.onSubmit = this.onSubmit.bind(this);
+    // this.onChange = this.onChange.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
+  }
+
+  componentDidMount(){
+    const promotionId = this.props.match.params.promotionId;
+    Axios.get(`http://3.121.98.124:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    .then(res =>{
+      console.log(res.data)
+      this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})
+    })
+    this.sendEmail();
+  }
+
+  sendEmail(){
+    const promotionId = this.props.match.params.promotionId;
+    const toEmail = this.props.match.params.email;
+    Axios.get(`http://3.121.98.124:5000/api/user/promoEmail?promotionId=${promotionId}&toEmail=${toEmail}`)
+    .then(res=>{
+      res.json("Posted")
+    })
+  }
   
   render() {
     const email = this.props.match.params.email;
-    let url = `localhost:3000/campaign/promo/email/${email}`
+    let url = `http://3.121.98.124:3000/campaign/promo/email/${email}`
     return (
         <div className = "landingEmailPage">
-          <h1 className="headingTop"><font color="white">La Bella Napoli Pizzeria want a Cold Beer</font></h1>
-          <h3><font color="white">Get a Cold Beer at La Bella Napoli Pizzeria</font></h3>
+          <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
+          <h3><font color="white">{this.state.description}</font></h3>
           <div className="landingEmailContainer">
-            <img className="promoEmailImg" src="https://www.bandt.com.au/information/uploads/2016/07/Quarterpoundmyangus-1260x840.jpg" />
+            <img className="promoEmailImg" src={this.state.imageurl} />
             <div className="emailForm">
             <p className= "EmailText">Please check your email for your download link!</p>
 

@@ -21,16 +21,25 @@ import {
 } from 'react-share';
 
 class DownloadPromo extends Component {
+
+  // componentDidMount(){
+  //   const promotionId = this.props.match.params.promotionId;
+  //   Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+  //   .then(res =>{
+  //     console.log(res.data)
+  //     this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})
+  //   })
+  // }
   
   render() {
-    let url = `localhost:3000/getPromo`
+    let url = `3.121.98.124:3000/getPromo`
     return (
         <div className = "landing">
-          <h1 className="headingTop"><font color="white">La Bella Napoli Pizzeria want a Cold Beer</font></h1>
-          <h3><font color="white">Get a Cold Beer at La Bella Napoli Pizzeria</font></h3>
+          <h1 className="headingTop"><font color="white">Promotion</font></h1>
+          <h3><font color="white">Promotion Description</font></h3>
         <div className="landingEmailContainer">
             
-            <img className="promoEmailImg" src="https://www.bandt.com.au/information/uploads/2016/07/Quarterpoundmyangus-1260x840.jpg" />
+            <img className="promoEmailImg" src="https://d16jhsvmsopai9.cloudfront.net/upload/img/sg-shiokaaah_promothumbnail-r2.jpg" />
             <div className="emailForm">
             <p className= "EmailText">Download your promo!</p>
 

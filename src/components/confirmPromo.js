@@ -28,22 +28,33 @@ class confirmPromo extends Component {
     .then(res =>{
         console.log(res.data.status);
         {(res.data.status == 200) ?
-            this.props.history.push(`/promo/${promotionId}/email/${email}`)
-            :
-            alert("Promo InCorrect");
+            (this.state.extraInfo == "Yes") ?
+                this.props.history.push(`/extraInfo/promo/${promotionId}/email/${email}`)
+                : 
+                this.props.history.push(`/promo/${promotionId}/email/${email}`)
+        :
+        alert("Promo InCorrect");
         }
     });
-    
+  }
+
+  componentDidMount(){
+    const promotionId = this.props.match.params.promotionId;
+    Axios.get(`http://3.121.98.124:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    .then(res =>{
+      console.log(res.data)
+      this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl, extraInfo: res.data.extraInfo})
+    })
   }
 
   render() {
     console.log(this.props.match.params.companyId);
     return (
       <div className = "landing">
-        <h1 className="headingTop"><font color="white">La Bella Napoli Pizzeria want a Cold Beer</font></h1>
-        <h3><font color="white">Get a Cold Beer at La Bella Napoli Pizzeria</font></h3>
+        <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
+        <h3><font color="white">{this.state.description}</font></h3>
             <div className="landingContainer">
-                <img className="promoImg" src="https://www.bandt.com.au/information/uploads/2016/07/Quarterpoundmyangus-1260x840.jpg" />
+                <img className="promoImg" src={this.state.imageurl} />
                 <form className="landingForm promoInput" onSubmit= {this.onSubmit}>
                 <font color="white"><p>SUBSCRIBE & GET YOUR PROMO</p></font>
                     <font color="#ccc"><p>Don't miss this great opportunity. Get it Now!</p></font>
