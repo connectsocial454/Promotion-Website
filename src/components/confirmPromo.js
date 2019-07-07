@@ -40,7 +40,7 @@ class confirmPromo extends Component {
 
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
-    Axios.get(`http://3.121.98.124:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
     .then(res =>{
       console.log(res.data)
       this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl, extraInfo: res.data.extraInfo})

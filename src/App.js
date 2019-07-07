@@ -23,7 +23,7 @@ class App extends Component {
           <Route exact path="/confirmPromo/:companyId/:promotionId/:email/:phoneNo" component={confirmPromo} />
           <Route exact path="/extraInfo/promo/:promotionId/email/:email" component={ExtraInfo} />
           <Route exact path="/promo/:promotionId/email/:email" component={PromoEmail} />
-          <Route exact path="/getPromo" component={DownloadPromo} />
+          <Route exact path="/get/promo/:promotionId" component={DownloadPromo} />
           {/* <Footer /> */}
         </div>
       </Router>

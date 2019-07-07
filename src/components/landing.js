@@ -15,6 +15,7 @@ class Landing extends Component {
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.recordFan = this.recordFan.bind(this);
   }
 
   onChange(e){
@@ -28,15 +29,20 @@ class Landing extends Component {
     const promotionId = this.props.match.params.promotionId;
     Axios.post(`/api/user/?name=${this.state.name}&phoneNo=${this.state.phoneNo}&email=${this.state.email}&companyId=${companyId}&promotionId=${promotionId}`)
     .then(alert("Promo Code Sent!"));
+    this.recordFan();
     this.props.history.push(`/confirmPromo/${companyId}/${promotionId}/${this.state.email}/${this.state.phoneNo}`);
   }
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
-    Axios.get(`http://3.121.98.124:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
     .then(res =>{
       console.log(res.data)
       this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})
     })
+  }
+  recordFan(){
+    Axios.post(`http://localhost:5000/api/user/totalFans?companyId=${this.props.match.params.companyId}`)
+    .then(console.log("Thank you for signing up!"));
   }
   render() {
     const data = this.state.title;

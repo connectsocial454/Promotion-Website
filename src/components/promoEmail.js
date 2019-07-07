@@ -32,7 +32,7 @@ class PromoEmail extends Component {
 
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
-    Axios.get(`http://3.121.98.124:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
     .then(res =>{
       console.log(res.data)
       this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})
@@ -43,7 +43,7 @@ class PromoEmail extends Component {
   sendEmail(){
     const promotionId = this.props.match.params.promotionId;
     const toEmail = this.props.match.params.email;
-    Axios.get(`http://3.121.98.124:5000/api/user/promoEmail?promotionId=${promotionId}&toEmail=${toEmail}`)
+    Axios.get(`http://localhost:5000/api/user/promoEmail?promotionId=${promotionId}&toEmail=${toEmail}`)
     .then(res=>{
       res.json("Posted")
     })
@@ -51,7 +51,7 @@ class PromoEmail extends Component {
   
   render() {
     const email = this.props.match.params.email;
-    let url = `http://3.121.98.124:3000/campaign/promo/email/${email}`
+    let url = `localhost:3000/campaign/promo/email/${email}`
     return (
         <div className = "landingEmailPage">
           <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
