@@ -40,13 +40,13 @@ class ExtraInfo extends Component {
 
     const age = Math.floor((new Date() - new Date(this.state.dob).getTime()) / 3.15576e+10);
 
-    Axios.post(`http://localhost:5000/api/user/extraInfo?zipCode=${this.state.zipCode}&dob=${this.state.dob}&gender=${this.state.gender}&promotionId=${promotionId}&age=${age}`)
+    Axios.post(`http://18.194.15.56:5000/api/user/extraInfo?zipCode=${this.state.zipCode}&dob=${this.state.dob}&gender=${this.state.gender}&promotionId=${promotionId}&age=${age}`)
     .then(alert("Thank You for the details!"));
     this.props.history.push(`/promo/${promotionId}/email/${email}`);
   }
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
-    Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    Axios.get(`http://18.194.15.56:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
     .then(res =>{
       console.log(res.data)
       this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})

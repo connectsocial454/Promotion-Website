@@ -34,14 +34,14 @@ class Landing extends Component {
   }
   componentDidMount(){
     const promotionId = this.props.match.params.promotionId;
-    Axios.get(`http://localhost:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
+    Axios.get(`http://18.194.15.56:5000/api/client/promotion/getPromotion?promotionId=${promotionId}`)
     .then(res =>{
       console.log(res.data)
       this.setState({data: res.data, title: res.data.title, description: res.data.description, imageurl: res.data.imageurl})
     })
   }
   recordFan(){
-    Axios.post(`http://localhost:5000/api/user/totalFans?companyId=${this.props.match.params.companyId}`)
+    Axios.post(`http://18.194.15.56:5000/api/user/totalFans?companyId=${this.props.match.params.companyId}`)
     .then(console.log("Thank you for signing up!"));
   }
   render() {
