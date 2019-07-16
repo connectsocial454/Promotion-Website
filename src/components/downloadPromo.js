@@ -39,7 +39,7 @@ class DownloadPromo extends Component {
   }
   
   render() {
-    let url = `localhost:3000/getPromo/${this.props.match.params.promotionId}`
+    let url = `18.194.15.56:3000/getPromo/${this.props.match.params.promotionId}`
     return (
         <div className = "landing">
           <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
@@ -68,6 +68,9 @@ class DownloadPromo extends Component {
           </div>
             </div>
         </div>
+        <div className="clear" />
+        <br/>
+        <a href={this.state.couponurl} download><button className = "btnDownload">Download Promo</button></a>
   </div>
     )
   }

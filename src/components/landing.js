@@ -5,6 +5,8 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { withRouter } from 'react-router';
 
+import ReactTooltip from 'react-tooltip';
+
 class Landing extends Component {
   constructor(props){
     super(props);
@@ -27,7 +29,7 @@ class Landing extends Component {
     // const companyName = this.props.match.params.companyName;
     const companyId = this.props.match.params.companyId;
     const promotionId = this.props.match.params.promotionId;
-    Axios.post(`/api/user/?name=${this.state.name}&phoneNo=${this.state.phoneNo}&email=${this.state.email}&companyId=${companyId}&promotionId=${promotionId}`)
+    Axios.post(`/api/user/?firstName=${this.state.firstName}&lastName=${this.state.lastName}&phoneNo=${this.state.phoneNo}&email=${this.state.email}&companyId=${companyId}&promotionId=${promotionId}`)
     .then(alert("Promo Code Sent!"));
     this.recordFan();
     this.props.history.push(`/confirmPromo/${companyId}/${promotionId}/${this.state.email}/${this.state.phoneNo}`);
@@ -56,7 +58,10 @@ class Landing extends Component {
                 <form className="landingForm promoInput" onSubmit= {this.onSubmit}>
                     <font color="white"><p>SUBSCRIBE & GET YOUR PROMO</p></font>
                     <font color="#ccc"><p>Don't miss this great opportunity. Get it Now!</p></font>
-                    <input type="text" name="name" className= "formInput" placeholder="Name" value= {this.state.name} onChange= {this.onChange} />
+                    <input type="text" name="firstName" className= "formInput" placeholder="First Name" value= {this.state.firstName} onChange= {this.onChange} />
+                    <div className="clear"></div>
+
+                    <input type="text" name="lastName" className= "formInput" placeholder="Last Name" value= {this.state.lastName} onChange= {this.onChange} />
                     <div className="clear"></div>
 
                     <input type="email" name="email" className= "formInput" placeholder="Email" value= {this.state.email} onChange= {this.onChange} />
@@ -66,7 +71,12 @@ class Landing extends Component {
                     className= "phoneNumber"
                     placeholder="Enter phone number"
                     value={ this.state.phoneNo }
+                    country = "US"
+                    countries = {["US"]}
                     onChange={ phoneNo => this.setState({ phoneNo }) } />
+                    <div className="btnTooltip" data-tip="To receive this great offer right on your mobile phone please enter your name, email and mobile number.  Once you hit submit, you’ll receive a text message with a code.  Click on close on the website and enter the code where it says Promo Code and hit submit.  You’ll then receive an email with your Connect Exclusive Offer.  Simply take that offer and show it to the Merchant to get the Offer.  Thank you and Enjoy!
+">?</div>
+                    <ReactTooltip className="tooltip" />
                     <div className="clear"></div>
                     <br />
                     <button className="btnSubmit">Submit</button>

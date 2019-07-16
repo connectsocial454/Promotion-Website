@@ -10,7 +10,8 @@
     "react-phone-number-input": "^2.3.13",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
-    "react-share": "^3.0.0"
+    "react-share": "^3.0.0",
+    "react-tooltip": "^3.10.0"
   },
   "scripts": {
     "start": "react-scripts start",
