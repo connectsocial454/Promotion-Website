@@ -48,13 +48,13 @@ class Landing extends Component {
   }
   render() {
     const data = this.state.title;
-    console.log(this.state.phoneNo);
+    const imageurl = "/uploads/" + this.state.imageurl;
     return (
       <div className = "landing">
         <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
         <h3><font color="white">{this.state.description}</font></h3>
             <div className="landingContainer">
-                <img className="promoImg" src={this.state.imageurl} />
+                <img className="promoImg" src={imageurl} />
                 <form className="landingForm promoInput" onSubmit= {this.onSubmit}>
                     <font color="white"><p>SUBSCRIBE & GET YOUR PROMO</p></font>
                     <font color="#ccc"><p>Don't miss this great opportunity. Get it Now!</p></font>

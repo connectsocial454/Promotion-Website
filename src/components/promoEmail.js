@@ -51,13 +51,14 @@ class PromoEmail extends Component {
   
   render() {
     const email = this.props.match.params.email;
+    const imageurl = "/uploads/" + this.state.imageurl;
     let url = `18.194.15.56:3000/campaign/promo/email/${email}`
     return (
         <div className = "landingEmailPage">
           <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
           <h3><font color="white">{this.state.description}</font></h3>
           <div className="landingEmailContainer">
-            <img className="promoEmailImg" src={this.state.imageurl} />
+            <img className="promoEmailImg" src={imageurl} />
             <div className="emailForm">
             <p className= "EmailText">Please check your email for your download link!</p>
 

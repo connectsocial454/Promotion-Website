@@ -40,13 +40,14 @@ class DownloadPromo extends Component {
   
   render() {
     let url = `18.194.15.56:3000/getPromo/${this.props.match.params.promotionId}`
+    const couponurl = "http://18.194.15.56:5000/uploads/" + this.state.couponurl;
     return (
         <div className = "landing">
           <h1 className="headingTop"><font color="white">{this.state.title}</font></h1>
           <h3><font color="white">{this.state.description}</font></h3>
         <div className="landingEmailContainer">
             
-            <img className="promoEmailImg" src={this.state.couponurl} />
+            <img className="promoEmailImg" src={couponurl} />
             <div className="emailForm">
             <p className= "EmailText">Download your promo!</p>
 
